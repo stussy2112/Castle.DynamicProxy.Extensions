@@ -37,7 +37,7 @@ jobs:
       uses: ./.github/actions/setup-environment
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-        java-version: '17'
+        java-version: '21'
         
     - name: Build solution
       uses: ./.github/actions/build-solution
