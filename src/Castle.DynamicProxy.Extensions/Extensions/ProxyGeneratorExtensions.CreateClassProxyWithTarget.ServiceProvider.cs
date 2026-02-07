@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
@@ -184,6 +185,7 @@ namespace Castle.DynamicProxy.Extensions
     /// object can be cast to the type specified by <paramref name="classToProxy"/>.</returns>
     /// <exception cref="ArgumentException">Thrown if <paramref name="classToProxy"/> is not a class type.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="proxyGenerator"/>, <paramref name="serviceProvider"/>, <paramref name="classToProxy"/>, <paramref name="target"/> or <paramref name="options"/> is <see langword="null"/>.</exception>
+    [SuppressMessage("Not Focused", "S107", Justification = "Necessary for extension method syntax.")]
     public static object CreateClassProxyWithTarget(this IProxyGenerator proxyGenerator, IServiceProvider serviceProvider, Type classToProxy, Type[]? additionalInterfacesToProxy, object? target, ProxyGenerationOptions options, object?[]? constructorArguments, params IInterceptor[] interceptors)
     {
       ArgumentNullException.ThrowIfNull(proxyGenerator);
@@ -245,7 +247,7 @@ namespace Castle.DynamicProxy.Extensions
       // SAMPLE: .ctor({intercepted instance}, Castle.DynamicProxy.IInterceptor[], {intercepted type constructor args})
       List<object?> args = [target, .. options.MixinData.Mixins, interceptors];
 
-      if (options?.Selector is not null)
+      if (options.Selector is not null)
       {
         args.Add(options.Selector);
       }

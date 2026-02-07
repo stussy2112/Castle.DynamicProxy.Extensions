@@ -382,6 +382,8 @@ dotnet_diagnostic.CA1819.severity                                        = none
 dotnet_diagnostic.CA1859.severity                                        = none
 # Mark members as static
 dotnet_diagnostic.CA1822.severity                                        = none
+# Use ValueTasks correctly
+dotnet_diagnostic.CA2012.severity                                        = none
 # Avoid unused private fields
 dotnet_diagnostic.CS0169.severity                                        = none
 # Unassigned internal fields
