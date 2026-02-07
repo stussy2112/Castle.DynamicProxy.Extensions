@@ -1,0 +1,92 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - main
+    - develop
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- checkout: self
+  clean: true
+  fetchDepth: 0
+
+- task: SonarCloudPrepare@3
+  displayName: 'Prepare analysis on SonarCloud'
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'azure-stussy2112'
+    scannerMode: 'dotnet'
+    projectKey: 'stussy2112_Castle.DynamicProxy.Extensions'
+    projectName: Castle.DynamicProxy.Extensions
+    extraProperties: |
+      sonar.exclusions=**/obj/**,**/*.dll,**/samples/**
+      sonar.cs.vscoveragexml.reportsPaths="$(Agent.TempDirectory)/**/*.xml"
+      sonar.cs.vstest.reportsPaths="$(Agent.TempDirectory)/**/*.trx"
+      sonar.scanner.scanAll=false
+      sonar.scanner.skipJreProvisioning=true
+
+- task: UseDotNet@2
+  displayName: 'Use .NET SDK 10.x'
+  inputs:
+    packageType: sdk
+    version: '10.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- task: DotNetCoreCLI@2
+  displayName: 'Restore NuGet packages'
+  inputs:
+    command: 'restore'
+    projects: '$(solution)'
+    feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build solution'
+  inputs:
+    command: 'build'
+    projects: '$(solution)'
+    arguments: '--no-restore --configuration $(BuildConfiguration) /p:MsCodeCoverageInstrumentation="true"'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run unit tests'
+  inputs:
+    command: 'test'
+    projects: '**/*tests/**/*.csproj'
+    arguments: '--no-build --configuration $(BuildConfiguration) --coverage --coverage-output-format xml,cobertura'
+    testRunTitle: 'Unit Tests'
+    publishTestResults: true
+
+- task: PublishCodeCoverageResults@2
+  displayName: 'Publish Code Coverage'
+  inputs:
+    summaryFileLocation: '$(Agent.TempDirectory)/**/*cobertura.xml'
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results'
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
+    mergeTestResults: true
+
+- task: SonarCloudAnalyze@3
+  displayName: 'Run Code Analysis'
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
+
+- task: SonarCloudPublish@3
+  displayName: 'Publish Quality Gate Result'
+  inputs:
+    pollingTimeoutSec: '300'
+

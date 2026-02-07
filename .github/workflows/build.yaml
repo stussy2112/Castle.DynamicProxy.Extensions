@@ -1,0 +1,63 @@
+name: Build, Test, and Analyze
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  checks: write
+  contents: read
+
+env:
+  SOLUTION: 'Castle.DynamicProxy.Extensions.slnx'
+  BUILD_CONFIGURATION: 'Release'
+  DOTNET_VERSION: '10.0.x'
+  SONAR_PROJECT_KEY: 'stussy2112_Castle.DynamicProxy.Extensions'
+  SONAR_ORGANIZATION: 'github-stussy2112'
+  TEST_RESULTS: './TestResults'
+
+jobs:
+  build-test-analyze:
+    name: Build, Test, and Analyze
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Required for SonarCloud
+        
+    - name: Setup environment
+      uses: ./.github/actions/setup-environment
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        java-version: '17'
+        
+    - name: Build solution
+      uses: ./.github/actions/build-solution
+      with:
+        solution: ${{ env.SOLUTION }}
+        configuration: ${{ env.BUILD_CONFIGURATION }}
+        sonar-token: ${{ secrets.SONAR_TOKEN }}
+        sonar-project-key: ${{ env.SONAR_PROJECT_KEY }}
+        sonar-organization: ${{ env.SONAR_ORGANIZATION }}
+        test-results-path: ${{ env.TEST_RESULTS }}
+        
+    - name: Run tests
+      uses: ./.github/actions/run-tests
+      with:
+        solution: ${{ env.SOLUTION }}
+        configuration: ${{ env.BUILD_CONFIGURATION }}
+        test-results-path: ${{ env.TEST_RESULTS }}
+        verbosity: 'normal'
+        
+    - name: Publish results
+      if: always()
+      uses: ./.github/actions/publish-results
+      with:
+        test-results-path: ${{ env.TEST_RESULTS }}
+        sonar-token: ${{ secrets.SONAR_TOKEN }}
+        codecov-token: ${{ secrets.CODECOV_TOKEN }}
+        fail-on-coverage-error: 'false'

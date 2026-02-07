@@ -1,0 +1,36 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="azure-pipelines.yml" />
+    <File Path="readme.md" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/">
+    <File Path=".github/actions/README.md" />
+    <File Path=".github/workflows/build.yaml" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/Build/">
+    <File Path=".github/actions/build-solution/action.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/Publish/">
+    <File Path=".github/actions/publish-results/action.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/Setup/">
+    <File Path=".github/actions/setup-environment/action.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/Test/">
+    <File Path=".github/actions/run-tests/action.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/copilot/">
+    <File Path=".github/copilot-instructions.md" />
+    <File Path=".github/instructions/coding-guidelines.instructions.md" />
+    <File Path=".github/instructions/coding-style.instructions.md" />
+    <File Path=".github/instructions/testing-mstest.instructions.md" />
+    <File Path=".github/prompts/code-review.prompt.md" />
+  </Folder>
+  <Folder Name="/source/">
+    <Project Path="src/Castle.DynamicProxy.Extensions/Castle.DynamicProxy.Extensions.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Castle.DynamicProxy.Extensions.Tests/Castle.DynamicProxy.Extensions.Tests.csproj" />
+  </Folder>
+</Solution>

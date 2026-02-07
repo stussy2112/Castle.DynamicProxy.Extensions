@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <RunAnalyzersDuringLiveAnalysis>True</RunAnalyzersDuringLiveAnalysis>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Nuget Properties">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <Company>Karma, LLC</Company>
+    <Copyright>Karma, LLC 2023</Copyright>
+    <Authors>Sean M. Williams</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    
+    <PackageId>Castle.DynamicProxy.Extensions</PackageId>
+    <Description>Extension library for Castle.DynamicProxy with DI integration and async interception support</Description>
+    <PackageTags>castle;dynamicproxy;aop;interception;dependency-injection;async</PackageTags>
+    <PackageProjectUrl>https://github.com/yourusername/Castle.DynamicProxy.Extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/yourusername/Castle.DynamicProxy.Extensions</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Link="Resources\README.md" Pack="true" PackagePath="/" PackageCopyToOutput="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Castle.DynamicProxy.Extensions.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Core" Version="5.2.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.2" />
+  </ItemGroup>
+
+</Project>
