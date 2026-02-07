@@ -1,5 +1,5 @@
 # Castle.DynamicProxy.Extensions
-[![Build Status](https://github.com/stussy2112/Castle.DynamicProxy.Extensions/workflows/CI/badge.svg)](https://github.com/stussy2112/Castle.DynamicProxy.Extensions/actions)
+[![Build Status](https://github.com/stussy2112/Castle.DynamicProxy.Extensions/actions/workflows/build.yaml/badge.svg)](https://github.com/stussy2112/Castle.DynamicProxy.Extensions/actions/workflows/build.yaml)
 [![NuGet](https://img.shields.io/nuget/v/Castle.DynamicProxy.Extensions.svg)](https://www.nuget.org/packages/Castle.DynamicProxy.Extensions/)
 [![.NET](https://img.shields.io/badge/.NET-10.0-blue.svg)](https://dotnet.microsoft.com/)
 [![License](https://img.shields.io/badge/license-GNU-green.svg)](LICENSE)
