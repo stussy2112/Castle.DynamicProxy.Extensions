@@ -1,0 +1,11 @@
+name: 'Publish Packages'
+description: 'Publish Packages to distributors'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Configure NuGet source and Push package
+      shell: bash
+      run: |
+        dotnet nuget add source --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com{{ github.repository_owner }}/index.json"
+        dotnet nuget push "*.nupkg" --source "github" --skip-duplicate

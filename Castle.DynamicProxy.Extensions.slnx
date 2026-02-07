@@ -12,6 +12,7 @@
     <File Path=".github/actions/build-solution/action.yml" />
   </Folder>
   <Folder Name="/Solution Items/.github/Publish/">
+    <File Path=".github/actions/publish-packages/action.yml" />
     <File Path=".github/actions/publish-results/action.yml" />
   </Folder>
   <Folder Name="/Solution Items/.github/Setup/">

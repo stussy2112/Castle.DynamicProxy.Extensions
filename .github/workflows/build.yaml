@@ -22,6 +22,10 @@ jobs:
   build-test-analyze:
     name: Build, Test, and Analyze
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Grant write permission to the GITHUB_TOKEN for publishing packages
+
     
     steps:
     - name: Checkout code
@@ -46,6 +50,7 @@ jobs:
         test-results-path: ${{ env.TEST_RESULTS }}
         
     - name: Run tests
+      id: tests
       uses: ./.github/actions/run-tests
       with:
         solution: ${{ env.SOLUTION }}
@@ -61,3 +66,7 @@ jobs:
         sonar-token: ${{ secrets.SONAR_TOKEN }}
         codecov-token: ${{ secrets.CODECOV_TOKEN }}
         fail-on-coverage-error: 'false'
+
+    - name: Publish Packages
+      if: ${{ steps.tests.conclusion != 'failure' }}
+      uses: ./.github/actions/publish-packages
