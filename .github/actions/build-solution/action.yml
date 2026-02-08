@@ -48,7 +48,7 @@ runs:
           /d:sonar.cs.vscoveragexml.reportsPaths="${{ inputs.test-results-path }}/*.xml" \
           /d:sonar.cs.vstest.reportsPaths="${{ inputs.test-results-path }}/*.trx" \
           /d:sonar.exclusions="**/obj/**,**/*.dll,**/samples/**,**/Samples/**" \
-          /d:sonar.tests="**/tests/**"
+          /d:sonar.test.inclusions="**/tests/**"
       
     - name: Build solution
       shell: bash
