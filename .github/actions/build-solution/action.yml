@@ -55,4 +55,6 @@ runs:
       run: |
         dotnet build ${{ inputs.solution }} \
           --no-restore \
-          --configuration ${{ inputs.configuration }}
+          --configuration ${{ inputs.configuration }} \
+          /p:AssemblyVersion=1.0.0.${{ github.run_number }} \
+          /p:Version=1.0.0-{{ inputs.configuration }}-${{ github.ref_name }}.${{ github.run_number }}

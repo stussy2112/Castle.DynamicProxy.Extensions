@@ -29,6 +29,11 @@
     <Copyright>Copyright © Karma, LLC 2026</Copyright>
     <Authors>Sean M. Williams</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <Version Condition=" '$(BUILD_BUILDNUMBER)' == '' ">0.0.1-local-$(Configuration)</Version>
+    <Version Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)-$(Configuration)</Version>
+    <AssemblyVersion Condition=" '$(BUILD_BUILDNUMBER)' == '' ">0.0.1</AssemblyVersion>
+    <AssemblyVersion Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</AssemblyVersion>
     
     <PackageId>Castle.DynamicProxy.Extensions</PackageId>
     <Description>Extension library for Castle.DynamicProxy with DI integration and async interception support</Description>
