@@ -69,8 +69,8 @@ jobs:
       with:
         name: build-artifact # The name of the artifact
         path: |
-          **/*.nupkg # The path to the file/directory to upload
-          **/*.snupkg # The path to the file/directory to upload
+          ${{ github.workspace }}/**/*.nupkg
+          ${{ github.workspace }}/**/*.snupkg
         retention-days: 5 # Optional: how long to keep the artifact (max is repo limit)
         overwrite: true
 
