@@ -24,10 +24,9 @@
     <!-- Optional: Enables Source Link support for seamless source code debugging -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    
-    <Version>1.0.0</Version>
+
     <Company>Karma, LLC</Company>
-    <Copyright>Karma, LLC 2023</Copyright>
+    <Copyright>Copyright © Karma, LLC 2026</Copyright>
     <Authors>Sean M. Williams</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     
