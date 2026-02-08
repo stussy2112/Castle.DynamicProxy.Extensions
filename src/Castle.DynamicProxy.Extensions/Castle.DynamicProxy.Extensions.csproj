@@ -10,10 +10,21 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NeutralLanguage>en-US</NeutralLanguage>
     <RunAnalyzersDuringLiveAnalysis>True</RunAnalyzersDuringLiveAnalysis>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <PropertyGroup Label="Nuget Properties">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <!-- Generates a separate symbol package (.snupkg) with full PDBs -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <!-- Specifies the symbol package format (snupkg is recommended) -->
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <!--<EmbedSymbols>true</EmbedSymbols>-->
+    
+    <!-- Optional: Enables Source Link support for seamless source code debugging -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    
     <Version>1.0.0</Version>
     <Company>Karma, LLC</Company>
     <Copyright>Karma, LLC 2023</Copyright>
@@ -23,8 +34,8 @@
     <PackageId>Castle.DynamicProxy.Extensions</PackageId>
     <Description>Extension library for Castle.DynamicProxy with DI integration and async interception support</Description>
     <PackageTags>castle;dynamicproxy;aop;interception;dependency-injection;async</PackageTags>
-    <PackageProjectUrl>https://github.com/yourusername/Castle.DynamicProxy.Extensions</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/yourusername/Castle.DynamicProxy.Extensions</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/stussy2112/Castle.DynamicProxy.Extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/stussy2112/Castle.DynamicProxy.Extensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
@@ -40,6 +51,8 @@
   <ItemGroup>
     <PackageReference Include="Castle.Core" Version="5.2.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.2" />
+    <!-- Optional: Add the Source Link package reference for your specific source control host -->
+     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.102" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>

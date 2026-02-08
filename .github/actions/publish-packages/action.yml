@@ -1,11 +1,45 @@
 name: 'Publish Packages'
-description: 'Publish Packages to distributors'
+description: 'Publish NuGet packages to GitHub Packages'
+
+inputs:
+  github-token:
+    description: 'GitHub token for authentication'
+    required: true
+  configuration:
+    description: 'Build configuration (Release/Debug)'
+    required: false
+    default: 'Release'
+  skip-duplicate:
+    description: 'Skip duplicate packages'
+    required: false
+    default: 'true'
 
 runs:
   using: 'composite'
   steps:
-    - name: Configure NuGet source and Push package
+    - name: Find NuGet packages
       shell: bash
       run: |
-        dotnet nuget add source --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com{{ github.repository_owner }}/index.json"
-        dotnet nuget push "*.nupkg" --source "github" --skip-duplicate
+        echo "Searching for NuGet packages..."
+        find . -name "*.nupkg" -type f
+        
+    - name: Configure GitHub Packages source
+      shell: bash
+      run: |
+        dotnet nuget add source \
+          --username ${{ github.actor }} \
+          --password ${{ inputs.github-token }} \
+          --store-password-in-clear-text \
+          --name github \
+          "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+        
+    - name: Push packages to GitHub Packages
+      shell: bash
+      run: |
+        for package in $(find . -name "*.nupkg" -not -path "*/\.nuget/*" -type f); do
+          echo "Publishing: $package"
+          dotnet nuget push "$package" \
+            --api-key ${{ inputs.github-token }} \
+            --source "github" \
+            --skip-duplicate
+        done

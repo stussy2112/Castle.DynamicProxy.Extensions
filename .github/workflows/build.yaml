@@ -9,6 +9,7 @@ on:
 permissions:
   checks: write
   contents: read
+  packages: write # Grant write permission to the GITHUB_TOKEN for publishing packages
 
 env:
   SOLUTION: 'Castle.DynamicProxy.Extensions.slnx'
@@ -22,10 +23,6 @@ jobs:
   build-test-analyze:
     name: Build, Test, and Analyze
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write # Grant write permission to the GITHUB_TOKEN for publishing packages
-
     
     steps:
     - name: Checkout code
@@ -67,6 +64,16 @@ jobs:
         codecov-token: ${{ secrets.CODECOV_TOKEN }}
         fail-on-coverage-error: 'false'
 
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4 # Use the upload-artifact action
+      with:
+        name: my-build-artifact # The name of the artifact
+        path: path/to/artifact/ # The path to the file/directory to upload
+        retention-days: 5 # Optional: how long to keep the artifact (max is repo limit)
+
     - name: Publish Packages
-      if: ${{ steps.tests.conclusion != 'failure' }}
       uses: ./.github/actions/publish-packages
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        configuration: ${{ env.BUILD_CONFIGURATION }}
+        skip-duplicate: 'true'
