@@ -1,8 +1,10 @@
 # Castle.DynamicProxy.Extensions
-[![Build Status](https://github.com/stussy2112/Castle.DynamicProxy.Extensions/actions/workflows/build.yaml/badge.svg)](https://github.com/stussy2112/Castle.DynamicProxy.Extensions/actions/workflows/build.yaml)
-[![NuGet](https://img.shields.io/nuget/v/Castle.DynamicProxy.Extensions.svg)](https://www.nuget.org/packages/Castle.DynamicProxy.Extensions/)
-[![.NET](https://img.shields.io/badge/.NET-10.0-blue.svg)](https://dotnet.microsoft.com/)
-[![License](https://img.shields.io/badge/license-GNU-green.svg)](LICENSE)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/stussy2112/Castle.DynamicProxy.Extensions/build.yaml?style=plastic&logo=github&label=Build%2C%20Test%2C%20and%20Analyze)](https://github.com/stussy2112/Castle.DynamicProxy.Extensions/actions/workflows/build.yaml)
+[![Sonar Coverage](https://img.shields.io/sonar/coverage/stussy2112_Castle.DynamicProxy.Extensions?server=https%3A%2F%2Fsonarcloud.io&style=plastic&logo=sonarqubecloud)](https://sonarcloud.io/summary/new_code?id=stussy2112_Castle.DynamicProxy.Extensions)
+[![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/stussy2112_Castle.DynamicProxy.Extensions?server=https%3A%2F%2Fsonarcloud.io&style=plastic&logo=sonarqubecloud)](https://sonarcloud.io/summary/new_code?id=stussy2112_Castle.DynamicProxy.Extensions)
+[![NuGet](https://img.shields.io/nuget/v/Castle.DynamicProxy.Extensions.svg?style=plastic&logo=nuget)](https://www.nuget.org/packages/Castle.DynamicProxy.Extensions/)
+[![.NET](https://img.shields.io/badge/.NET-10.0-blue.svg?style=plastic&logo=dotnet)](https://dotnet.microsoft.com/)
+[![License](https://img.shields.io/badge/license-GNU_GPLv3-green?style=plastic&logo=gnu)](LICENSE.txt)
 
 A powerful extension library for Castle.DynamicProxy that provides seamless integration with Microsoft.Extensions.DependencyInjection and adds comprehensive support for asynchronous method interception.
 

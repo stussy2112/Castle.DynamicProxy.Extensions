@@ -41,9 +41,15 @@
     <PackageProjectUrl>https://github.com/stussy2112/Castle.DynamicProxy.Extensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stussy2112/Castle.DynamicProxy.Extensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- These items correct issues with the metadata for the Nuget package that is created -->
+    <EmbeddedFiles Include="$(GeneratedAssemblyInfoFile)" />
+    <EmbeddedFiles Include="$(TargetFrameworkMonikerAssemblyAttributesPath)" />
+  </ItemGroup>
+  
   <ItemGroup>
     <None Include="..\..\README.md" Link="Resources\README.md" Pack="true" PackagePath="/" PackageCopyToOutput="true" />
   </ItemGroup>
