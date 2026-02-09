@@ -6,7 +6,7 @@
 [![.NET](https://img.shields.io/badge/.NET-10.0-blue.svg?style=plastic&logo=dotnet)](https://dotnet.microsoft.com/)
 [![License](https://img.shields.io/badge/license-GNU_GPLv3-green?style=plastic&logo=gnu)](LICENSE.txt)
 
-A powerful extension library for Castle.DynamicProxy that provides seamless integration with Microsoft.Extensions.DependencyInjection and adds comprehensive support for asynchronous method interception.
+A powerful extension library for [Castle.DynamicProxy](https://github.com/castleproject/Core) that provides seamless integration with [Microsoft.Extensions.DependencyInjection](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.DependencyInjection) and adds comprehensive support for asynchronous method interception.
 
 ## Table of Contents
 
@@ -777,8 +777,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the GNU v3 License - see the [LICENSE file](LICENSE.txt) for details.
 
 ---
 
-**Built with ❤️ using Castle.DynamicProxy and .NET 10**
+**Built with ❤️ using [Castle.DynamicProxy](https://github.com/castleproject/Core) and .NET 10**
